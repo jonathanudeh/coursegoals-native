@@ -26,38 +26,41 @@ export default function App() {
   }
 
   return (
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="##5e0acc"
-        onPress={startAddGoalHndler}
-      />
-
-      <GoalInput
-        onAddGoal={addGoalHandler}
-        visible={isModalVisible}
-        onCancelModal={() => setIsModalVisible(false)}
-      />
-
-      <View style={styles.goalContainer}>
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => {
-            return (
-              <GoalItem
-                text={itemData.item.text}
-                id={itemData.item.id}
-                onDeleteItem={deleteGoalHandler}
-              />
-            );
-          }}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-          alwaysBounceVertical={false}
+    <>
+      <View style={styles.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#af82e9"
+          onPress={startAddGoalHndler}
         />
+
+        <GoalInput
+          onAddGoal={addGoalHandler}
+          visible={isModalVisible}
+          onCancelModal={() => setIsModalVisible(false)}
+        />
+
+        <View style={styles.goalContainer}>
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => {
+              return (
+                <GoalItem
+                  text={itemData.item.text}
+                  id={itemData.item.id}
+                  onDeleteItem={deleteGoalHandler}
+                />
+              );
+            }}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }}
+            alwaysBounceVertical={false}
+          />
+        </View>
       </View>
-    </View>
+      <StatusBar style="light" />
+    </>
   );
 }
 
